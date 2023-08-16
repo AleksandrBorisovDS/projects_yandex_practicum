@@ -14,4 +14,4 @@ Based on the data of the credit department of the bank, I studied the influence 
 
 - Categorized data.
 
--One dataframe decomposed into three.
+- One dataframe decomposed into three.
