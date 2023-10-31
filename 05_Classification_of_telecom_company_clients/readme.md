@@ -6,7 +6,7 @@ Based on data on the behavior of customers of the mobile operator "Megaline", bu
 The model will be formed based on data on the behavior of users who have already switched to these tariffs.
 
 # Tools
-- Pyton
+- Python
 - Pandas
 - Matplotlib
 - Scikit-learn
