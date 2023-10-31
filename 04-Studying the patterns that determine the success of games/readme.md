@@ -8,7 +8,7 @@ The project involves studying, analyzing and testing statistical hypotheses base
 To identify patterns that positively influence sales of a particular category of computer games, for the further possible formation of recommendations for potentially popular computer games in 2017 and, as a result, building marketing campaigns for the Strimchik online store.
 
 # Tools
-- Pyton
+- Python
 - Pandas
 - Matplotlib
 - NumPy
