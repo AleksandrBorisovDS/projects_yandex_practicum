@@ -7,7 +7,7 @@ Data preprocessing and analysis were carried out.
 Hypotheses about the difference in revenue for subscribers of different tariffs and the difference in revenue for subscribers from Moscow and other regions were tested.
 
 # Tools
-- Pyton
+- Python
 - Pandas
 - Matplotlib
 - NumPy
