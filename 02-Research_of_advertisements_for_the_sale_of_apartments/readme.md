@@ -11,7 +11,7 @@ Based on the Yandex.Realty service data, the market value of various types of re
 - Histograms, boxplots, scatterplots are constructed.
 
 # Tools
-- Pyton
+- Python
 - Pandas
 - Matplotlib
 
