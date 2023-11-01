@@ -1,14 +1,20 @@
 # Task
-Based on historical data (technical characteristics, configurations and prices of cars), to build a machine learning model (solve a **regression problem**, supervised learning) to predict the market value of cars.
+Development of a machine learning model to predict taxi orders for the next hour.
 
 # Project description
-The customer, a service for selling used cars "Not a Bit, Not a Paint", is developing an application that provides the ability **to quickly** determine the cost of a car based on its technical parameters, and is interested in developing a machine learning model that would predict this price.
+In order to attract more drivers during **peak hours*, it is necessary to develop a machine learning model (**regression task**, supervised learning) to predict the number of orders in the next hour.
 
-Model characteristics required by the customer: 
-- high speed of operation,
-- quality metric **RMSE** no more than **2,500**.
+To train the model, historical data on the number of taxi orders is available.
 
-To develop the project, a dataset was provided with historical data on sales prices of used cars, including the technical characteristics of these cars.
+Model quality requirements:
+- assessment based on the **RMSE** metric;
+- the metric value should not be more than **48** on the test sample.
+
+The project was completed in 4 steps:
+- loading, reviewing and resampling data in one hour;
+- data analysis, preprocessing;
+- training several different models, selecting the best hyperparameters on the training set. (test sample - 10% of the original data);
+- checking the best model on a test sample.
 
 # Tools
 - Python
@@ -17,22 +23,23 @@ To develop the project, a dataset was provided with historical data on sales pri
 - Statsmodels
 
 # Сonclusions
-To develop the project, a dataset with historical data was provided, which contained 354,369 rows and 16 columns. The data contained gaps.
-As a result of the data preprocessing, a dataset of 277,080 rows and 10 columns was prepared, containing no gaps, full of explicit and implicit duplicate rows, which was used for training and testing machine learning models.
+Historical data contained information on the number of orders in the period from March 1 to August 31, 2018.
+The total data volume was 26,496 rows.
 
-3 machine learning models were studied:
-- LightBRM,
+As a result of work on the project, it was determined that the data does not require additional preprocessing.
+
+The data was **resampled at 1 hour**, because the customer needs a forecast of the number of orders for the next hour.
+
+Additional features and samples were generated for training machine learning models.
+
+4 models were trained:
+- Linear Regression,
+- Random Forest,
 - CatBoost
-- Linear regression.
+- LightGBM.
 
-Linear regression showed the best results in terms of training and prediction time, but did not provide the required quality.
+The best value of the **RMSE metric** on the training set was shown by the **Random Forest** model. RMSE = **8.269**.
+The Random Forest model, with the best hyperparameters (number of trees 500, maximum tree depth 20) was tested on a test sample.
+The **RMSE** metric value was **47.71**, which meets the customer’s requirement - no more than 48.
 
-The LightBRM and CatBoost models have been extensively analyzed and both training and prediction times have been significantly reduced.
-
-The **CatBoost** model was chosen as the best model, showing the following results:
-- the training time was: 12.9 s.
-- the prediction time on the test sample was: 0.049 s.
-- **RMSE: 1,626**.
-
-The resulting RMSE value is significantly lower than the threshold specified by the customer (2,500).
-Thus, the task was completely completed.
+The task was completed completely.
