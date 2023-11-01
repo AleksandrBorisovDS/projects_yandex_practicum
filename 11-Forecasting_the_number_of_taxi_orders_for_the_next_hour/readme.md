@@ -13,7 +13,8 @@ To develop the project, a dataset was provided with historical data on sales pri
 # Tools
 - Python
 - Pandas
-- LightGBM
+- Scikit-learn
+- Statsmodels
 
 # Сonclusions
 To develop the project, a dataset with historical data was provided, which contained 354,369 rows and 16 columns. The data contained gaps.
