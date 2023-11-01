@@ -32,6 +32,6 @@ As a result of the project:
      -  decision tree 
      -  random forest.
 - the best hyperparameters were selected for each model.
-- 
+
 As a result, the best value of the **F1** metric was shown by the **Logistic Regression** model, for which on the test sample (with parameter C=16) the value of the F1 metric = **0.7888**.
 The task was successfully completed.
