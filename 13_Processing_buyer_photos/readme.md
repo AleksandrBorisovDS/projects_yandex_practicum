@@ -28,4 +28,6 @@ To reduce the model training time, the following was used:
 - using weights calculated on a pre-trained **imagenet** neural network;
 - application of the **loss function mean squared error**.
 
+The model was trained over **7 epochs**, the total training time was **5.9 minutes**.
+
 As a result, model showed a **MAE** metric value on the test sample = **6.47**, which is significantly lower than the minimum required threshold for model quality.
