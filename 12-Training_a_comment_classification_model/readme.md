@@ -1,37 +1,37 @@
 # Task
-Based on historical data (technical characteristics, configurations and prices of cars), to build a machine learning model (solve a **regression problem**, supervised learning) to predict the market value of cars.
+Development of a machine learning model to determine the toxicity of comments for online store.
 
 # Project description
-The customer, a service for selling used cars "Not a Bit, Not a Paint", is developing an application that provides the ability **to quickly** determine the cost of a car based on its technical parameters, and is interested in developing a machine learning model that would predict this price.
+Develop a tool - a machine learning model (**binary classification** task, supervised learning) that will identify toxic comments and send them for moderation.
 
-Model characteristics required by the customer: 
-- high speed of operation,
-- quality metric **RMSE** no more than **2,500**.
+The customer provided a set of data with markings about the toxicity of edits (the text column is the text of the comment, and toxic is the target attribute).
 
-To develop the project, a dataset was provided with historical data on sales prices of used cars, including the technical characteristics of these cars.
+The customer's requirement for the quality of the model is that the value of the quality **metric F1** is not less than **0.75**.
 
+The project was completed in 3 steps:
+- loading, review and preprocessing of data;
+- generating features for machine learning models;
+- training various models and selecting the best hyperparameters.
+  
 # Tools
 - Python
 - Pandas
-- LightGBM
+- nltk
+- tf-idf
 
 # Сonclusions
-To develop the project, a dataset with historical data was provided, which contained 354,369 rows and 16 columns. The data contained gaps.
-As a result of the data preprocessing, a dataset of 277,080 rows and 10 columns was prepared, containing no gaps, full of explicit and implicit duplicate rows, which was used for training and testing machine learning models.
+The customer provided initial data with comments marked on toxicity, data volume: 159,292 rows and 2 columns (comment text and toxicity markup).
 
-3 machine learning models were studied:
-- LightBRM,
-- CatBoost
-- Linear regression.
-
-Linear regression showed the best results in terms of training and prediction time, but did not provide the required quality.
-
-The LightBRM and CatBoost models have been extensively analyzed and both training and prediction times have been significantly reduced.
-
-The **CatBoost** model was chosen as the best model, showing the following results:
-- the training time was: 12.9 s.
-- the prediction time on the test sample was: 0.049 s.
-- **RMSE: 1,626**.
-
-The resulting RMSE value is significantly lower than the threshold specified by the customer (2,500).
-Thus, the task was completely completed.
+As a result of the project:
+- the data was preprocessed:
+     -  comments were reduced to the original form of words,
+     -  stop words were removed;
+- an analysis of class balance was carried out, the results of which were taken into account in the parameters of the models;
+- three machine learning models were trained:
+     -  logistic regression,
+     -  decision tree 
+     -  random forest.
+- the best hyperparameters were selected for each model.
+- 
+As a result, the best value of the **F1** metric was shown by the **Logistic Regression** model, for which on the test sample (with parameter C=16) the value of the F1 metric = **0.7888**.
+The task was successfully completed.
