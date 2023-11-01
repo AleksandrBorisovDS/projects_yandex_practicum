@@ -1,37 +1,53 @@
 # Task
-Based on historical data (technical characteristics, configurations and prices of cars), to build a machine learning model (solve a **regression problem**, supervised learning) to predict the market value of cars.
+Develop a machine learning model to predict customer churn for a telecommunications company.
 
 # Project description
-The customer, a service for selling used cars "Not a Bit, Not a Paint", is developing an application that provides the ability **to quickly** determine the cost of a car based on its technical parameters, and is interested in developing a machine learning model that would predict this price.
+Based on historical data, create a machine learning model that would predict whether a customer plans to leave or not. 
+Solve the **classification** problem, supervised learning. 
+Train a model, that determines the client’s desire to refuse the company’s services in order not to lose him and promptly offer promotional codes and special conditions.
 
-Model characteristics required by the customer: 
-- high speed of operation,
-- quality metric **RMSE** no more than **2,500**.
-
-To develop the project, a dataset was provided with historical data on sales prices of used cars, including the technical characteristics of these cars.
+Quality metric of the resulting model: **AUC-ROC**
+Required metric value: more than **0.85**.
 
 # Tools
 - Python
 - Pandas
-- LightGBM
+- Matplotlib
+- Scikit-learn
 
 # Сonclusions
-To develop the project, a dataset with historical data was provided, which contained 354,369 rows and 16 columns. The data contained gaps.
-As a result of the data preprocessing, a dataset of 277,080 rows and 10 columns was prepared, containing no gaps, full of explicit and implicit duplicate rows, which was used for training and testing machine learning models.
+**Description of the main steps performed when working on the project:**
+- Loading data from 4 different files into 4 variables. The load process attempted to load date data into datetime format.
+- The data was merged into 1 file (merge(left, right, on=['customerID'], how='outer')).
+- Obvious complete duplicate lines were removed, gaps were filled (with the value "No").
+- Based on data about the beginning (BeginDate) and end (EndDate) of the contractual relationship with the client, two additional characteristics were created:
+    - the period ("client_period") during which the client is (was) a client 
+    - the target characteristic ("target") whether he is a client (1) or no longer (0).
+- The data is reduced to the required formats:
+    - numeric attributes to the float and int formats
+    - categorical attributes to the object format;
+- The correlation between signs has been studied. It was found that the characteristics InternetService and MonthlyCharges have the highest correlation, the correlation coefficient between them is 0.92;
+- Column names are set to "snake_style".
 
-3 machine learning models were studied:
-- LightBRM,
-- CatBoost
-- Linear regression.
+To train the models, a sample size of 7,039 rows by 18 columns was generated, of which 1 - int, 2 - float and 15 - object.
 
-Linear regression showed the best results in terms of training and prediction time, but did not provide the required quality.
+To solve the problem, 3 machine learning models were generated and trained:
+- LogisticRegression;
+- RandomForestClassifier;
+- CatBoostClassifier.
 
-The LightBRM and CatBoost models have been extensively analyzed and both training and prediction times have been significantly reduced.
+The selection of the best hyperparameters of the models was carried out using GridSearchCV.
 
-The **CatBoost** model was chosen as the best model, showing the following results:
-- the training time was: 12.9 s.
-- the prediction time on the test sample was: 0.049 s.
-- **RMSE: 1,626**.
+The results of training models with the best hyperparameters according to the **roc-auc** quality metric are as follows:
+- LogisticRegression - 76.9%;
+- RandomForestClassifier - 80.8%;
+- CatBoostClassifier - 92.5%.
 
-The resulting RMSE value is significantly lower than the threshold specified by the customer (2,500).
-Thus, the task was completely completed.
+Thus, the best indicator in terms of quality metrics was the **CatBoostClassifier** model with the following hyperparameters:
+- 'classifier__depth': 4,
+- 'classifier__iterations': 1000,
+- 'classifier__l2_leaf_reg': 1,
+- 'classifier__learning_rate': 0.1
+
+The best model was tested on a **test sample**, where it showed a **quality metric value of 91.7%**,
+the project objectives have been fully completed.
