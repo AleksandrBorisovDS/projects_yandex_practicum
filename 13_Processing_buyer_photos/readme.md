@@ -1,37 +1,31 @@
 # Task
-Based on historical data (technical characteristics, configurations and prices of cars), to build a machine learning model (solve a **regression problem**, supervised learning) to predict the market value of cars.
+Development of a machine learning model to determine the age of buyers from photographs.
 
 # Project description
-The customer, a service for selling used cars "Not a Bit, Not a Paint", is developing an application that provides the ability **to quickly** determine the cost of a car based on its technical parameters, and is interested in developing a machine learning model that would predict this price.
+In connection with the introduction of a **computer vision system** for processing photographs of customers, it is necessary to develop a model that would determine the **approximate age** of the buyer from a photograph taken in the checkout area at the time of purchase.
 
-Model characteristics required by the customer: 
-- high speed of operation,
-- quality metric **RMSE** no more than **2,500**.
+Necessary develop a machine learning model (**regression problem**, supervised learning) based on an existing dataset with photographs of people and an indication of age.
 
-To develop the project, a dataset was provided with historical data on sales prices of used cars, including the technical characteristics of these cars.
+Model requirements:
+- quality assessment metric - **MAE**
+- quality metric value is **less than 8**.
+
+The project was completed in 2 stages:
+- exploratory analysis of data from the existing dataset;
+- formation and training of a machine learning model on a GPU simulator.
 
 # Tools
 - Python
-- Pandas
-- LightGBM
+- Keras
 
 # Сonclusions
-To develop the project, a dataset with historical data was provided, which contained 354,369 rows and 16 columns. The data contained gaps.
-As a result of the data preprocessing, a dataset of 277,080 rows and 10 columns was prepared, containing no gaps, full of explicit and implicit duplicate rows, which was used for training and testing machine learning models.
+To train the model, a labeled dataset of **7,591 photographs** of people with the specified age was used.
 
-3 machine learning models were studied:
-- LightBRM,
-- CatBoost
-- Linear regression.
+As a result of the project, a model was developed based on a **convolutional neural network on the ResNet50** architecture with the **Adam** optimizer.
 
-Linear regression showed the best results in terms of training and prediction time, but did not provide the required quality.
+To reduce the model training time, the following was used:
+- use of the reduced ResNet50 architecture (parameter include_top=False);
+- using weights calculated on a pre-trained **imagenet** neural network;
+- application of the **loss function mean squared error**.
 
-The LightBRM and CatBoost models have been extensively analyzed and both training and prediction times have been significantly reduced.
-
-The **CatBoost** model was chosen as the best model, showing the following results:
-- the training time was: 12.9 s.
-- the prediction time on the test sample was: 0.049 s.
-- **RMSE: 1,626**.
-
-The resulting RMSE value is significantly lower than the threshold specified by the customer (2,500).
-Thus, the task was completely completed.
+As a result, model showed a **MAE** metric value on the test sample = **6.47**, which is significantly lower than the minimum required threshold for model quality.
